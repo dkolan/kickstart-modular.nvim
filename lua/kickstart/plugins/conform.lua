@@ -1,6 +1,10 @@
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
+    dependencies = {
+      'mason-org/mason.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+    },
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -41,6 +45,17 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
       },
     },
+    config = function(_, opts)
+      require('conform').setup(opts)
+
+      -- Install formatters via Mason
+      require('mason-tool-installer').setup {
+        ensure_installed = {
+          'stylua',
+          'clang-format',
+        },
+      }
+    end,
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

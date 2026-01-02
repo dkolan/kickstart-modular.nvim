@@ -18,7 +18,7 @@ return {
     scroll = { enabled = true }, -- Smooth scrolling
     statuscolumn = { enabled = true }, -- Status column enhancements
     words = { enabled = true }, -- Word highlighting
-    termina = { enabled = true }, -- Termianl floating
+    terminal = { enabled = true }, -- Terminal floating
   },
   keys = {
     {
@@ -55,6 +55,17 @@ return {
         Snacks.terminal()
       end,
       desc = '[T]erminal',
+      mode = 'n',
+    },
+    -- To hide terminal from within, use <C-q> to exit terminal mode first (see keymaps.lua)
+    -- or use <C-t> as a non-leader alternative
+    {
+      '<C-t>',
+      function()
+        Snacks.terminal()
+      end,
+      mode = 't',
+      desc = 'Toggle Terminal',
     },
   },
   config = function(_, opts)
